@@ -12,9 +12,18 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class HttpControllerTest {
 
+    private static final String TAG = "HttpControllerTest : ";
+
+    @GetMapping("/http/lombok")
+    public String lombokTest(){
+        Member m1 = new Member(1, "son" , "1234", "email");
+        return "lombok test success";
+    }
+
     // http://localhost:8080/http/get
     @GetMapping("/http/get")
-    public String getTest(){
+    public String getTest(Member m){
+        System.out.println(TAG+"gettet : "+ m.getId());
         return "get 요청";
     }
 
