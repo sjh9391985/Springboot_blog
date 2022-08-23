@@ -9,6 +9,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * class 설명:
@@ -43,7 +44,10 @@ public class Board {
     @CreationTimestamp
     private Timestamp updateDate;
 
-    @ManyToOne // 현재 table인 board가 many를 의미하고 user가 one을 의미함. => 한명의 유저는 여러개의 게시글을 작성 가능하다는 의미.
+    @OneToMany(mappedBy = "board", fetch = FetchType.EAGER) // mappedBy 연관관계의 주인이 아님. FK가 아님.
+    private List<Reply> reply;
+
+    @ManyToOne(fetch = FetchType.EAGER) // 현재 table인 board가 many를 의미하고 user가 one을 의미함. => 한명의 유저는 여러개의 게시글을 작성 가능하다는 의미.
     @JoinColumn(name="userId") // 실제 TABLE 필드 생성시에는 userId 라는 이름으로 생성됨.
     private User user; // DB는 오브젝트를 저장할 수 없음. FK, 자바는 오브젝트를 저장할 수 있음.
 
