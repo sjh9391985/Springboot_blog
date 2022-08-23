@@ -1,9 +1,8 @@
-package com.example.demo.test;
+package com.example.blog.test;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 /**
  * class 설명:
