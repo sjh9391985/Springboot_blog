@@ -1,5 +1,9 @@
 package com.example.blog.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -13,6 +17,10 @@ import java.sql.Timestamp;
  * author : sonjaehyeon
  * date : 2022/08/23
  */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 public class Board {
 
