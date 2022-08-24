@@ -4,8 +4,13 @@ import com.example.blog.model.RoleType;
 import com.example.blog.model.User;
 import com.example.blog.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.function.Supplier;
 
 /**
@@ -58,4 +63,19 @@ public class DummyControllerTest {
         // user 객체 = 자바오브젝트
         return user;
     }
+
+    // 전체가 return 됨.
+    @GetMapping("/dummy/users")
+    public List<User> list(){
+        return userRepository.findAll();
+    }
+
+    // 한 페이지당 2건의 데이터를 return
+    @GetMapping("/dummy/user")
+    public List<User> pageList(@PageableDefault(size=2, sort="id", direction = Sort.Direction.DESC)Pageable pageable){
+        Page<User> pagingUser = userRepository.findAll(pageable);
+        List<User> users = pagingUser.getContent();
+        return users;
+    }
+
 }
