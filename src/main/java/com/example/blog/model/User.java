@@ -22,6 +22,7 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @Builder
 @Entity // User class가 springboot 실행 시 자동으로 MySQL에 Table 생성을 해줌.
+// @DynamicInsert : Insert 경우 null인 field 를 제외하고 insert 작업을 진행함.
 public class User {
 
     @Id // pk를 의미함.
@@ -37,8 +38,9 @@ public class User {
     @Column(nullable = false, length = 50)
     private String email;
 
-    @ColumnDefault("'user'") // column default 사용시 ' ' 를 통해 문자임을 알려줌.
-    private String role; // admin, user, manager
+    // @ColumnDefault("'user'") // column default 사용시 ' ' 를 통해 문자임을 알려줌.
+    @Enumerated(EnumType.STRING)
+    private RoleType role; // admin, user
 
     @CreationTimestamp // 시간이 자동 입력
     private Timestamp createDate;
