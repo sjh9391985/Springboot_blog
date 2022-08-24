@@ -27,7 +27,7 @@ public class User {
 
     @Id // pk를 의미함.
     @GeneratedValue(strategy = GenerationType.IDENTITY) // numbering이 해당 프로젝트에서 연결된 DB의 넘버링 전략을 따라감.
-    private long id; // auto_increment
+    private int id; // auto_increment
 
     @Column(nullable = false, length = 30) // null == false , 30자 이상 불가능
     private String username; // 유저 id
